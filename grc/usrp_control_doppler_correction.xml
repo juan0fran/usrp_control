@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<block>
+  <name>doppler_correction</name>
+  <key>USRP_Doppler_Correction</key>
+  <category>USRP Control</category>
+  <import>import usrp_control</import>
+  <make>usrp_control.doppler_correction(self.set_$target_tx(), self.set_$target_rx(), "$host()", $port())</make>
+
+  <param>
+    <name>Variable</name>
+    <key>target_rx</key>
+    <value>freq_rx</value>
+    <type>string</type>
+  </param>
+
+  <param>
+    <name>Variable</name>
+    <key>target_tx</key>
+    <value>freq_tx</value>
+    <type>string</type>
+  </param>
+
+  <param>
+    <name>Host</name>
+    <key>host</key>
+    <value>localhost</value>
+    <type>string</type>
+  </param>
+
+  <param>
+    <name>Port</name>
+    <key>port</key>
+    <value>53001</value>
+    <type>int</type>
+  </param>
+
+</block>
