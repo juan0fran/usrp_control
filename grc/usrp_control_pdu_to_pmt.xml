@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<block>
+  <name>PDU to PMT</name>
+  <key>usrp_control_pdu_to_pmt</key>
+  <category>usrp_control</category>
+  <import>import usrp_control</import>
+  <make>usrp_control.pdu_to_pmt()</make>
+  <sink>
+    <name>in</name>
+    <type>message</type>
+  </sink>
+  <source>
+    <name>out</name>
+    <type>message</type>
+  </source>
+</block>

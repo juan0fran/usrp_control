@@ -36,38 +36,31 @@ class doppler_runner(threading.Thread):
 
     def run(self):
         bind_to = (self.host, self.port)
-        server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        server = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
         server.bind(bind_to)
-        server.listen(0)
 
-        cur_freq_tx = 0
-        cur_freq_rx = 0
+        cur_freq_tx = -1
+        cur_freq_rx = -1
         while True:
-            ·print "[Doppler_Correction]: Waiting for connection on: %s:%d" % bind_to
-            sock, addr = server.accept()
-            print "[Doppler_Correction]: Connected from: %s:%d" % (addr[0], addr[1])
+            data, addr = server.recvfrom(1024)
+            if not data:
+                break
 
-            while True:
-                data = sock.recv(1024)
-                if not data:
-                    break
+            if data.startswith('F'):
+                rx,tx = data.split(";")
+                freq_rx = int(rx[1:].strip())
+                if freq_rx != cur_freq_rx:
+                    print "[Doppler_Correction]:New frequency RX: %d" % freq_rx
+                    self.callback_rx(freq_rx)
+                    cur_freq_rx = freq_rx
 
-                if data.startswith('F'):
-                    rx,tx = data.split(";")
-                    freq_rx = int(rx[1:].strip())
-                    if freq_rx != cur_freq_rx:
-                        print "[Doppler_Correction]:New frequency RX: %d" % freq_rx
-                        self.callback_rx(freq_rx)
-                        cur_freq_rx = freq_rx
+                freq_tx = int(tx.strip())
+                if freq_tx != cur_freq_tx:
+                    print "[Doppler_Correction]:New frequency TX: %d" % freq_tx
+                    self.callback_tx(freq_tx)
+                    cur_freq_tx = freq_tx
 
-                    freq_tx = int(tx.strip())
-                    if freq_tx != cur_freq_tx:
-                        print "[Doppler_Correction]:New frequency TX: %d" % freq_tx
-                        self.callback_tx(freq_tx)
-                        cur_freq_tx = freq_tx
-
-            sock.close()
-            print "[Doppler_Correction]: Disconnected from: %s:%d" % (addr[0], addr[1])
+        sock.close()
 
 class doppler_correction(gr.sync_block):
     """

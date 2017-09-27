@@ -32,5 +32,5 @@ except ImportError:
 
 # import any pure python here
 from doppler_correction import doppler_correction
-from tx_control import tx_control
+
 #

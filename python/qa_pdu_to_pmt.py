@@ -21,9 +21,9 @@
 
 from gnuradio import gr, gr_unittest
 from gnuradio import blocks
-from tx_control import tx_control
+import usrp_control_swig as usrp_control
 
-class qa_tx_control (gr_unittest.TestCase):
+class qa_pdu_to_pmt (gr_unittest.TestCase):
 
     def setUp (self):
         self.tb = gr.top_block ()
@@ -38,4 +38,4 @@ class qa_tx_control (gr_unittest.TestCase):
 
 
 if __name__ == '__main__':
-    gr_unittest.run(qa_tx_control, "qa_tx_control.xml")
+    gr_unittest.run(qa_pdu_to_pmt, "qa_pdu_to_pmt.xml")

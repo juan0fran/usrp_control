@@ -26,6 +26,7 @@ include_directories(${Boost_INCLUDE_DIR})
 link_directories(${Boost_LIBRARY_DIRS})
 
 list(APPEND usrp_control_sources
+    pdu_to_pmt_impl.cc
 )
 
 set(usrp_control_sources "${usrp_control_sources}" PARENT_SCOPE)

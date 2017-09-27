@@ -22,5 +22,5 @@
 ########################################################################
 install(FILES
     api.h
-    DESTINATION include/usrp_control
+    pdu_to_pmt.h DESTINATION include/usrp_control
 )

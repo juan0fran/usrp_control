@@ -8,6 +8,9 @@
 %include "usrp_control_swig_doc.i"
 
 %{
+#include "usrp_control/pdu_to_pmt.h"
 %}
 
 
+%include "usrp_control/pdu_to_pmt.h"
+GR_SWIG_BLOCK_MAGIC2(usrp_control, pdu_to_pmt);

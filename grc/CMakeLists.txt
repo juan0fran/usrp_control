@@ -16,8 +16,7 @@
 # along with GNU Radio; see the file COPYING.  If not, write to
 # the Free Software Foundation, Inc., 51 Franklin Street,
 # Boston, MA 02110-1301, USA.
-
 install(FILES
     usrp_control_doppler_correction.xml
-    usrp_control_tx_control.xml DESTINATION share/gnuradio/grc/blocks
+    usrp_control_pdu_to_pmt.xml DESTINATION share/gnuradio/grc/blocks
 )

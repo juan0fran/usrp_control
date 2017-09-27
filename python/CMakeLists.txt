@@ -32,7 +32,7 @@ GR_PYTHON_INSTALL(
     FILES
     __init__.py
     doppler_correction.py
-    tx_control.py DESTINATION ${GR_PYTHON_DIR}/usrp_control
+    DESTINATION ${GR_PYTHON_DIR}/usrp_control
 )
 
 ########################################################################
@@ -43,4 +43,4 @@ include(GrTest)
 set(GR_TEST_TARGET_DEPS gnuradio-usrp_control)
 set(GR_TEST_PYTHON_DIRS ${CMAKE_BINARY_DIR}/swig)
 GR_ADD_TEST(qa_doppler_correction ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_doppler_correction.py)
-GR_ADD_TEST(qa_tx_control ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_tx_control.py)
+GR_ADD_TEST(qa_pdu_to_pmt ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_pdu_to_pmt.py)
