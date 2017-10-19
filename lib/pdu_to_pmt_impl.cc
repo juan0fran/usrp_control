@@ -85,13 +85,13 @@ namespace gr {
         size_t offset(0);
 
         memcpy(data_in, pmt::uniform_vector_elements(msg, offset), msg_size);
-        std::printf("Received: %s\n", data_in);
-        sscanf((char *) data_in, "F%s", str);
-        freq = atol(str);
-        message_port_pub(pmt::mp("out"),
-                pmt::cons(pmt::mp("freq"),
-                            pmt::from_long(freq)));
-
+        if (sscanf((char *) data_in, "F%s", str) == 1) {
+            freq = atol(str);
+            pmt::pmt_t command = pmt::make_dict();
+            command = pmt::dict_add(command, pmt::mp("freq"), pmt::mp(freq));
+            command = pmt::dict_add(command, pmt::mp("lo_offset"), pmt::mp(1e6));
+            message_port_pub(pmt::mp("out"), command);
+        }
     }
 
   } /* namespace usrp_control */
